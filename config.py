@@ -13,10 +13,13 @@ from libqtile.lazy import lazy
 class Commands:
     browser = "sidekick-browser"
     file_manager = "nautilus --no-desktop"
-    pycharm = "pycharm"
     runner = "krunner"
     terminal = "gnome-terminal"
     vscode = "code"
+    gedit = "gedit"
+    volume_up = "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+    volume_down = "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+    network = "kcmshell5 kcm_networkmanagement"
 
 
 mod = "mod4"
@@ -35,7 +38,7 @@ keys = [
     # Custom commands bindings
     Key([mod], "b", lazy.spawn(Commands.browser), desc="Launch browser"),
     Key([mod], "f", lazy.spawn(Commands.file_manager), desc="Launch files"),
-    Key([mod], "p", lazy.spawn(Commands.pycharm), desc="Launch pycharm"),
+    Key([mod], "p", lazy.spawn(Commands.gedit), desc="Launch gedit"),
     Key([mod], "t", lazy.spawn(Commands.terminal), desc="Launch terminal"),
     Key([mod], "v", lazy.spawn(Commands.vscode), desc="Launch vs code"),
     # Key([mod], "p", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
@@ -45,6 +48,13 @@ keys = [
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+
+    # Volume control
+    Key([mod, "shift"], "Up", lazy.spawn(Commands.volume_up), desc="Volume up"),
+    Key([mod, "shift"], "Down", lazy.spawn(Commands.volume_down), desc="Volume down"),
+
+    # View network connections
+    Key([mod, "shift"], "n", lazy.spawn(Commands.network), desc="View connections"),
 
     # Cycle through windows
     Key([mod, "control"], "c", lazy.layout.next(),
@@ -163,7 +173,7 @@ screens = [
                 ),
                 widget.QuickExit(
                     default_text="SHUTDOWN",
-                    countdown_format="{} sec"
+                    countdown_format="{} seconds"
                 ),
             ],
             35,
@@ -186,6 +196,7 @@ dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
+
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
