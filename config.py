@@ -1,30 +1,4 @@
 
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
 import os
 import subprocess
 
@@ -39,8 +13,10 @@ from libqtile.lazy import lazy
 class Commands:
     browser = "sidekick-browser"
     file_manager = "nautilus --no-desktop"
+    pycharm = "pycharm"
     runner = "krunner"
     terminal = "gnome-terminal"
+    vscode = "code"
 
 
 mod = "mod4"
@@ -56,11 +32,13 @@ keys = [
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
 
-    # Special commands
+    # Custom commands bindings
     Key([mod], "b", lazy.spawn(Commands.browser), desc="Launch browser"),
     Key([mod], "f", lazy.spawn(Commands.file_manager), desc="Launch files"),
+    Key([mod], "p", lazy.spawn(Commands.pycharm), desc="Launch pycharm"),
     Key([mod], "t", lazy.spawn(Commands.terminal), desc="Launch terminal"),
-    Key([mod], "p", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "v", lazy.spawn(Commands.vscode), desc="Launch vs code"),
+    # Key([mod], "p", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "space", lazy.spawn(Commands.runner), desc="Launch krunner"),
 
     # Kill, restart, shutdown
@@ -163,11 +141,11 @@ screens = [
                     margin_x=7,
                     padding_x=7
                 ),
-                widget.Prompt(
-                    background="#869FAA",
-                    foreground="000000",
-                    padding=10
-                ),
+                # widget.Prompt(
+                #     background="#869FAA",
+                #     foreground="000000",
+                #     padding=10
+                # ),
                 widget.WindowName(
                     font="Montserrat Bold",
                     padding=10
