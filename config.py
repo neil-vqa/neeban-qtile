@@ -47,14 +47,14 @@ keys = [
     # Kill, restart, shutdown
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod, "mod1"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     # Volume control
-    Key([mod, "shift"], "Up", lazy.spawn(Commands.volume_up), desc="Volume up"),
-    Key([mod, "shift"], "Down", lazy.spawn(Commands.volume_down), desc="Volume down"),
+    Key([mod, "mod1"], "Up", lazy.spawn(Commands.volume_up), desc="Volume up"),
+    Key([mod, "mod1"], "Down", lazy.spawn(Commands.volume_down), desc="Volume down"),
 
     # View network connections
-    Key([mod, "shift"], "n", lazy.spawn(Commands.network), desc="View connections"),
+    Key([mod, "mod1"], "n", lazy.spawn(Commands.network), desc="View connections"),
 
     # Cycle through windows
     Key([mod, "control"], "c", lazy.layout.next(),
@@ -160,20 +160,25 @@ screens = [
                     font="Montserrat Bold",
                     padding=10
                 ),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
+                # widget.Chord(
+                #     chords_colors={
+                #         'launch': ("#ff0000", "#ffffff"),
+                #     },
+                #     name_transform=lambda name: name.upper(),
+                # ),
                 widget.Systray(),
                 widget.Clock(
                     format='%A, %b-%d-%Y | %I:%M %p',
                     padding=10
                 ),
+                widget.Sep(
+                    foreground="ffffff",
+                    size_percent=60
+                ),
                 widget.QuickExit(
                     default_text="SHUTDOWN",
-                    countdown_format="{} seconds"
+                    countdown_format="{} seconds left",
+                    padding=10
                 ),
             ],
             35,
