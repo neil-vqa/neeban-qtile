@@ -26,12 +26,6 @@ mod = "mod4"
 
 
 keys = [
-    # Switch between windows
-    # Key([mod], "Left", lazy.layout.left(), desc="Move focus to left"),
-    # Key([mod], "Right", lazy.layout.right(), desc="Move focus to right"),
-    # Key([mod], "Down", lazy.layout.down(), desc="Move focus down"),
-    # Key([mod], "Up", lazy.layout.up(), desc="Move focus up"),
-
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
 
@@ -151,35 +145,15 @@ screens = [
                     margin_x=7,
                     padding_x=7
                 ),
-                # widget.Prompt(
-                #     background="#869FAA",
-                #     foreground="000000",
-                #     padding=10
-                # ),
                 widget.WindowName(
                     font="Montserrat Bold",
                     padding=10
                 ),
-                # widget.Chord(
-                #     chords_colors={
-                #         'launch': ("#ff0000", "#ffffff"),
-                #     },
-                #     name_transform=lambda name: name.upper(),
-                # ),
                 widget.Systray(),
                 widget.Clock(
                     format='%A, %b-%d-%Y | %I:%M %p',
                     padding=10
-                ),
-                widget.Sep(
-                    foreground="ffffff",
-                    size_percent=60
-                ),
-                widget.QuickExit(
-                    default_text="SHUTDOWN",
-                    countdown_format="{} seconds left",
-                    padding=10
-                ),
+                )
             ],
             35,
             background="#002863"
@@ -221,12 +195,6 @@ reconfigure_screens = True
 # focus, should we respect this or not?
 auto_minimize = True
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
