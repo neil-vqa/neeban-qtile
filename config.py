@@ -20,6 +20,7 @@ class Commands:
     volume_up = "pactl set-sink-volume @DEFAULT_SINK@ +5%"
     volume_down = "pactl set-sink-volume @DEFAULT_SINK@ -5%"
     network = "kcmshell5 kcm_networkmanagement"
+    keepass = "keepassxc &"
 
 
 mod = "mod4"
@@ -32,6 +33,7 @@ keys = [
     # Custom commands bindings
     Key([mod], "b", lazy.spawn(Commands.browser), desc="Launch browser"),
     Key([mod], "f", lazy.spawn(Commands.file_manager), desc="Launch files"),
+    Key([mod], "k", lazy.spawn(Commands.keepass), desc="Launch keepassxc"),
     Key([mod], "p", lazy.spawn(Commands.gedit), desc="Launch gedit"),
     Key([mod], "t", lazy.spawn(Commands.terminal), desc="Launch terminal"),
     Key([mod], "v", lazy.spawn(Commands.vscode), desc="Launch vs code"),
